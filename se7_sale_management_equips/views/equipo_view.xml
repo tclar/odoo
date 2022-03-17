@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <act_window
+            id="act_window_equipos"
+            name="act_window_equipos"
+            res_model="sale.order"
+            view_type="form"
+            view_mode="tree,form"
+            domain=" [('equipo_reparacion', 'in', active_id)]"
+    />
+
+    <record id="view_form_equipo" model="ir.ui.view">
+        <field name="name">Equipo Form</field>
+        <field name="model">sale_management_equips.equipo</field>
+        <field name="arch" type="xml">
+            <form string="Equipo">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="num_serie"/>
+                            <field name="pedido_venta"/>
+                            <field name="puesta_en_marcha"/>
+                            <field name="fecha_fin_garantia"/>
+                        </group>
+                        <group>
+                            <field name="product_reference" widget="many2one"/>
+                            <field name="user_reference" widget="many2one"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sale Orders">
+                            <field name="sale_equipos" widget="one2many">
+                                <tree editable="bottom">
+                                    <field name="date_order"/>
+                                    <field name="user_id"/>
+                                    <field name="partner_id"/>
+                                    <field name="amount_total"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Imágenes Equipo">
+                            <field name="id" invisible="1"/>
+                            <group name="extra_images">
+                                <field name="imagenes_equipo" class="o_website_sale_image_list"
+                                       context="{'default_equipo': id}"
+                                       nolabel="1">
+                                    <kanban string="Imagenes Equipos" class="o_attachments_previews">
+                                        <field name="id"/>
+                                        <field name="name"/>
+                                        <field name="imagen"/>
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="o_attachment oe_kanban_global_click o_website_sale_image_card">
+                                                    <div class="o_attachment_wrap">
+                                                        <div class="o_image_box">
+                                                            <div class="o_attachment_image"
+                                                                 t-attf-style="background-image:url({{kanban_image('sale_management_equips.imagen_equipo', 'imagen', record.id.raw_value)}});"/>
+                                                            <div t-attf-class="o_image_overlay"
+                                                                 t-att-title="record.name.value"/>
+                                                            <div class="o_website_sale_image_card_title"
+                                                                 t-att-title="record.name.value">
+                                                                <field name="name"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <t t-set="size" t-value="[record.imagen.value][0]"/>
+                                                        <t t-set="size_status" t-value="'normal'"
+                                                           t-if="size.indexOf('Bytes') !== -1 or ( size.indexOf('Kb') !== -1 and size[2]=='.')"/>
+                                                        <t t-set="size_status" t-value="'warning'"
+                                                           t-elif="( size.indexOf('Kb') !== -1 and size[3]=='.')"/>
+                                                        <t t-set="size_status" t-value="'danger'" t-else=""/>
+                                                        <t t-set="message" t-value="'Acceptable file size'"
+                                                           t-if="size_status == 'normal'"></t>
+                                                        <t t-set="message"
+                                                           t-value="'Huge file size. The image should be optimized/reduced.'"
+                                                           t-elif="size_status == 'warning'"></t>
+                                                        <t t-set="message"
+                                                           t-value="'Optimization required! Reduce the image size or increase your compression settings.'"
+                                                           t-else=""></t>
+
+                                                        <span t-attf-class="o_website_sale_image_card_size badge badge-#{size_status}"
+                                                              t-att-title="message">
+                                                            <t t-esc="record.imagen.value"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_kanban_equipo" model="ir.ui.view">
+        <field name="name">Equipos Kanban</field>
+        <field name="model">sale_management_equips.equipo</field>
+        <field name="arch" type="xml">
+            <kanban class="o_zoo_animal_kanban">
+                <field name="name"/>
+                <field name="num_serie"/>
+                <field name="product_reference" widget="many2one"/>
+                <field name="user_reference" widget="many2one"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong class="oe_kanban_record_title">
+                                    <field name="name"/>
+                                    <field name="num_serie"/>
+                                </strong>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_tree_equipo" model="ir.ui.view">
+        <field name="name">Lista de Equipos</field>
+        <field name="model">sale_management_equips.equipo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="num_serie"/>
+                <field name="product_reference" widget="many2one"/>
+                <field name="user_reference" widget="many2one"/>
+                <field name="pedido_venta"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_search_equipo" model="ir.ui.view">
+        <field name="name">Filtros de Equipos</field>
+        <field name="model">sale_management_equips.equipo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="num_serie"/>
+                <field name="product_reference" widget="many2one"/>
+                <field name="user_reference" widget="many2one"/>
+                <field name="pedido_venta"/>
+            </search>
+        </field>
+    </record>
+
+    <act_window id="my_act_equipos"
+                name="Equipos"
+                res_model="sale_management_equips.equipo"
+                view_mode="tree,form,kanban"/>
+
+    <menuitem id="menu_equipos"
+              name="Equipos"
+              action="my_act_equipos"
+              parent="sale.sale_order_menu"/>
+</odoo>

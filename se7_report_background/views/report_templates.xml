@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="se7_report_background_external_layout_background" inherit_id="web.external_layout_background">
+            <xpath expr="//div[@class='article o_report_layout_background']" position="attributes">
+                <attribute t-if="company.report_background_image" name="t-attf-style">
+                    background-image: url(data:image/*;base64,{{company.report_background_image}})
+                </attribute>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_equipo_usuario,Equipo Acceso Usuario,model_sale_management_equips_equipo,sale_management_equips_group_user,1,0,0,0
+access_equipo_manager,Equipo Acceso Manager,model_sale_management_equips_equipo,sale_management_equips_group_manager,1,1,1,1
+access_imagen_equipo_usuario,Imagenes del equipo Acceso Usuario,model_sale_management_equips_imagen_equipo,sale_management_equips_group_user,1,0,0,0
+access_imagen_equipo_manager,Imagenes del equipo Acceso Manager,model_sale_management_equips_imagen_equipo,sale_management_equips_group_manager,1,1,1,1

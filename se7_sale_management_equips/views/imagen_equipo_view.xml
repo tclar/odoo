@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="imagen_equipo_form_view" model="ir.ui.view">
+            <field name="name">sale_management_equips.imagen_equipo.form</field>
+            <field name="model">sale_management_equips.imagen_equipo</field>
+            <field name="arch" type="xml">
+                <form string="Imagenes equipo">
+                    <sheet>
+                        <group>
+                            <field name="equipo"/>
+                            <field name="imagen" widget="image"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="imagen_equipo_tree_view" model="ir.ui.view">
+            <field name="name">sale_management_equips.imagen_equipo.tree</field>
+            <field name="model">sale_management_equips.imagen_equipo</field>
+            <field name="arch" type="xml">
+                <tree string="Imagenes equipo">
+                    <field name="name"/>
+                    <field name="equipo"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="imagen_equipo_search_view" model="ir.ui.view">
+            <field name="name">sale_management_equips.imagen_equipo.search</field>
+            <field name="model">sale_management_equips.imagen_equipo</field>
+            <field name="arch" type="xml">
+                <search string="Imagenes equipo">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="imagen_equipo_act_window" model="ir.actions.act_window">
+            <field name="name">Imagenes equipo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale_management_equips.imagen_equipo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Imagenes equipos" id="imagen_equipo_menu" parent="sale.sale_order_menu"
+                  action="imagen_equipo_act_window"/>
+
+    </data>
+</odoo>

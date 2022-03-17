@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="form_sale_order_extended" model="ir.ui.view">
+        <field name="name">Sale Order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="validity_date" position="after">
+                <field name="es_reparacion"/>
+                <field name="equipo_reparacion"
+                       attrs="{'invisible': [('es_reparacion','=',False)]}"
+                       context="{'default_user_reference': partner_id}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

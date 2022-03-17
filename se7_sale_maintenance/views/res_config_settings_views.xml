@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_sale_mantinance" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale_mantinance</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="25"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Maintenance/Repairs" string="Maintenance/Repairs"
+                     data-key="se7_sale_maintenance" groups="sales_team.group_sale_manager">
+                    <h2>Default Payment method</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <label for="mantinance_default_journal_id"/>
+                            <div>
+                                <div class="text-muted">
+                                    Defines the default journal for maintenance
+                                </div>
+                                <field name="mantinance_default_journal_id"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <label for="repair_default_journal_id"/>
+                            <div>
+                                <div class="text-muted">
+                                    Defines the default journal for repairs
+                                </div>
+                                <field name="repair_default_journal_id"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_sale_mantinance_configuration" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'se7_sale_maintenance'}</field>
+    </record>
+
+    <menuitem id="sale_mantinance_settings" name="Settings" parent="new_sale_menu_root"
+              action="action_sale_mantinance_configuration" groups="base.group_system"/>
+
+</odoo>
