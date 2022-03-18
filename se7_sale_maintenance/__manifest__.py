@@ -3,7 +3,7 @@
     'name': "Se7 Ventas Mantenimiento",
 
     'summary': """
-        Modificaciones específicas para Roselló Solar en ventas.
+        Modificaciones específicas para Roselló Solar en ventas asi es.
     """,
 
     'description': """
