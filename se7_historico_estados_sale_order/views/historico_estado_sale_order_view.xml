@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="historico_estado_sale_order_form_view" model="ir.ui.view">
+            <field name="name">sale.historico_estado_sale_order.form</field>
+            <field name="model">sale.historico_estado_sale_order</field>
+            <field name="arch" type="xml">
+                <form string="Historico Estado">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="sale_order"/>
+                                <field name="estado_anterior"/>
+                                <field name="estado_nuevo"/>
+                            </group>
+                            <group>
+                                <field name="fecha"/>
+                                <field name="usuario"/>
+                                <field name="empleado"/>
+                            </group>
+                            <field name="observaciones"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="historico_estado_sale_order_tree_view" model="ir.ui.view">
+            <field name="name">sale.historico_estado_sale_order.tree</field>
+            <field name="model">sale.historico_estado_sale_order</field>
+            <field name="arch" type="xml">
+                <tree string="Historico Estado">
+                    <field name="estado_anterior"/>
+                    <field name="estado_nuevo"/>
+                    <field name="editor"/>
+                    <field name="fecha"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
