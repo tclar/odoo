@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Se7 Roselló Solar Project OneDrive",
-    'version': '12.0.1.0',
+    'version': '12.0.2.0',
     'summary': """
         Afegeix un link de OneDrive al mòdul de projectes.
     """,
