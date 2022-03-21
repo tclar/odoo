@@ -14,7 +14,7 @@
 
     'author': "SE7 Consulting Balears",
     'website': "https://www.se7bal.com",
-    'version': '12.0.2.0',
+    'version': '12.0.4.0',
     'depends': ['base', 'hr', 'se7_gestion_instaladoras', 'contract', 'se7_mf_diarios_tecnicos'],
     'data': [
         'views/sale_order_views.xml',
