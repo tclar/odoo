@@ -8,7 +8,7 @@
 
     'author': "SE7 Consulting Balears",
     'website': "https://www.se7bal.com",
-    'version': '12.0.1.0',
+    'version': '12.0.2.0',
     'depends': ['base', 'sale', 'hr', 'se7_gestion_instaladoras'],
     'data': [
         'security/ir.model.access.csv',
